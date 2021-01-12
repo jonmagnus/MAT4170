@@ -20,29 +20,33 @@ We can expect to find a unique polynomial obtaining those values.
 
 Writing the requirement explicitly we get a linear system of equations to be satisfied:
 \begin{equation*}
-Mc = f
+    Mc = f
 \end{equation*}
 $M$ is the matrix $M=(x_i^j)_{i,j}$, $c$ is the vector of coefficients and $f$ is the vector of function values.
 The matrix $M$ is called the Vandermonde matrix. 
 
 \begin{theorem}
-The matrix $M$ is invertible if the evaluation points are distinct.
+    The matrix $M$ is invertible if the evaluation points are distinct.
 \end{theorem}
 \begin{proof}
-Suppose Mc = 0. We wish to show that c = 0.
-Assume c satisfies this. Then the corresponding polynomial of degree n evaluates to zero at $n + 1$ points, so it is the zero polynomial, and therefore all the coefficients are zero.
+    Suppose Mc = 0. We wish to show that c = 0.
+    Assume c satisfies this.
+    Then the corresponding polynomial of degree n evaluates to zero at $n + 1$ points,
+    so it is the zero polynomial, and therefore all the coefficients are zero.
 \end{proof}
 
 \begin{proof}[Alternative proof]
-You can prove that the determinant
-\begin{equation*}
-\det(M)= \prod_{0\leq i < j \leq n} (x_j - x_i)
-\end{equation*}.
-This is clearly non-zero for distinct points.
-The proof of the formula follows by induction.
+    You can prove that the determinant
+    \begin{equation*}
+    \det(M)= \prod_{0\leq i < j \leq n} (x_j - x_i)
+    \end{equation*}.
+    This is clearly non-zero for distinct points.
+    The proof of the formula follows by induction.
 
-The base case is trivially satisfied.
-For the inductive step assume.
+    The base case is trivially satisfied.
+    For the inductive step let $M_{m,i} = (x_j^k)_{j\neq i,\, k\leq m}$.
+    We assume $\det(M_{m,i})=\prod_{j,k\neq i,\, j<k} (x_k - x_j)$.
+    \todo{Complete the proof.}
 \end{proof}
 
 You can use the newton basis to find a set of coefficients recursively.
