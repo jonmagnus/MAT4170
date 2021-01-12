@@ -1,0 +1,80 @@
+
+\chapter{Polynomial Interpolation}
+
+Splines are piecewise polynomials.
+Polynomials are real-valued functions.
+A polynomial of degree < n is a sum of terms
+\begin{equation*}
+p(x) = \sum_{j=0}^n c_j x^j
+\end{equation*}
+
+We denote by $\pi_n$ then linear space of all such polynomials.
+
+A basis for $\pi_n$ is the set of monomials up to degree $n$, so $\pi_n$ is a $n + 1$-dimensional $\mathbb R$ vector space.
+
+\section{Interpolation}
+
+Given a set of $n + 1$ distinct points and the value of some function at those points.
+We want to find the polynomial $p\in\pi_n$ such that it obtains the function values at their respective points.
+We can expect to find a unique polynomial obtaining those values.
+
+Writing the requirement explicitly we get a linear system of equations to be satisfied:
+\begin{equation*}
+Mc = f
+\end{equation*}
+$M$ is the matrix $M=(x_i^j)_{i,j}$, $c$ is the vector of coefficients and $f$ is the vector of function values.
+The matrix $M$ is called the Vandermonde matrix. 
+
+\begin{theorem}
+The matrix $M$ is invertible if the evaluation points are distinct.
+\end{theorem}
+\begin{proof}
+Suppose Mc = 0. We wish to show that c = 0.
+Assume c satisfies this. Then the corresponding polynomial of degree n evaluates to zero at $n + 1$ points, so it is the zero polynomial, and therefore all the coefficients are zero.
+\end{proof}
+
+\begin{proof}[Alternative proof]
+You can prove that the determinant
+\begin{equation*}
+\det(M)= \prod_{0\leq i < j \leq n} (x_j - x_i)
+\end{equation*}.
+This is clearly non-zero for distinct points.
+The proof of the formula follows by induction.
+
+The base case is trivially satisfied.
+For the inductive step assume.
+\end{proof}
+
+You can use the newton basis to find a set of coefficients recursively.
+The newton basis is the set $\{1, x - x_0, \ldots, \prod (x-x_i)\}$.
+
+Even easier is to use the Lagrange basis. This has the form $\{\prod_{k\neq j} \frac {x - x_k}{x_j - x_k}\}_j$. The coefficients will be the function values.
+
+\section{Iterative interpolation}
+
+A fourth method more suited for Bezier curves and later spline curves.
+Suppose $q,r\in \pi_{n - 1}$ and satisfies $q(x_i)=f(x_i)$ for $i=0,\ldots,n - 1$ and $r(x_i)=f(x_i)$ for $i=1,\ldots,n$.
+
+Then $p(x)=\frac {x_n - x}{x_n - x_0}q(x) + \frac {x - x_0}{x_n - x_0}r(x)$ solves interpolation for all the $n + 1$ points.
+
+We generalize this procedure to interpolate the lower degree polynomials.
+Starting with degree $0$ polynomials $p_{i,0}=f(x_i)$.
+For $d \geq 1$ we have 
+\begin{equation*}
+p_{i,d}(x) = \frac{x_{i + d} - x}{x_{i + r} - x_i}p_{i,r - 1}(x)
++ \frac{x - x_i}{x_{i +r} - x_i} p_{i + 1, r - 1}(x)
+\end{equation*}
+Then $p_{0, n}(x)$ is the interpolating polynomial for all points.
+
+This is often called the Neville-scheme, but often just called iterative interpolation.
+The aggregation of information, or rather the dependency graph gives us a triangular scheme.
+In practice we usually compute degree-wise.
+
+\section{Parametric curves}
+
+Instead of letting our polynomial coefficients take on real values, we instead choose coefficients from a real vector field $c_i\in \mathbb R^k$.
+Then $p(t) = \sum c_j t^j$ becomes a parametric curve in $\mathbb R^k$.
+Usually, for applications in computer aided design $k$ takes on the value $2$ or $3$.
+
+The same results about interpolation still hold.
+
