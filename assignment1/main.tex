@@ -1,0 +1,116 @@
+\documentclass{article}
+
+\usepackage{assignment}
+
+\author{Jon-Magnus Rosenblad}
+\title{MAT4170 \-- Assignment \#1}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1.3.a}
+
+We have a set of knots $\vec t = (t_0, t_1, t_2, t_3)$
+and set of points $(\vec c_0, \vec c_1, \vec c_2, \vec c_3)$.
+We define a recursive relation 
+$\vec p_{j,d}(t) = (1 - t) \vec p_{j - 1, d - 1}(t)
++ t \vec p_{j, d - 1}(t)$.
+
+From degree $0$ our computation becomes
+\begin{equation*}
+\begin{aligned}
+    \vec p_{i,0} &= \vec c_i\\
+    \vec p_{1,1} &= (1 - t)\vec c_0 + t\vec c_1\\
+    \vec p_{2,1} &= (1 - t)\vec c_1 + t\vec c_2\\
+    \vec p_{3,1} &= (1 - t)\vec c_2 + t\vec c_3\\
+    \vec p_{2,2} &= (1 - t)\vec p_{1,1} + t\vec p_{2,1}\\
+    &= (1 - t)^2\vec c_0 + 2(1 - t)t\vec c_1 + t^2\vec c_2\\
+    \vec p_{3,2} &= (1 - t)\vec p_{2,1} + t\vec p_{3,1}\\
+    &= (1 - t)^2\vec c_1 + 2(1 - t)t\vec c_2 + t^2\vec c_3\\
+    \vec p_{3,3} &= (1 - t)\vec p_{2,2} + t\vec p_{3,2}\\
+    &= (1 - t)^3\vec c_0 + 3(1 - t)^2t \vec c_1
+    + (1 - t)t^2\vec c_2 + t^3\vec c_3.
+\end{aligned}
+\end{equation*}
+
+We denote the coefficient of $c_i$ in $p_{3,3}$ by $\lambda_i$.
+For $t\in[0,1]$ it is immediately clear that $\lambda_i(t)\geq 0$.
+Furthermore we observe $\sum\lambda_i = ((1 - t) + t)^3 = 1$ for each $t$,
+so we must have $\lambda_i(t)\leq 1$ for $t\in [0,1]$.
+This prooves that $p_{3,3}(t)$ is a convex combination of $(\vec c_i)$.
+
+\section*{Problem 2.1.h}
+
+We have the following definition recursive relation
+\begin{equation*}
+    B[t_0,\ldots, t_{n + 1}](x)
+    =\frac {x - t_0}{t_n - t_0}B[t_0,\ldots,t_n](x)
+    +\frac {t_{n + 1} - x}{t_{n + 1} - t_1} B[t_1,\ldots,t_{n + 1}](x)
+\end{equation*}
+
+We get the following computation
+
+\begin{equation*}
+\begin{aligned}
+    B[0,3,4,6](x)
+    &= \frac 1 4 x B[0,3,4](x) - \frac 1 3 (x - 6) B[3,4,6](x)\\
+    B[0,3,4](x)
+    &= \frac 1 3 x B[0,3](x) - (x - 4) B[3,4](x)\\
+    B[3,4,6](x)
+    &= (x - 3) B[3,4](x) - \frac 1 2 (x - 6) B[4,6](x)
+\end{aligned}
+\end{equation*}
+
+Substituting we get
+
+\begin{equation*}
+\begin{aligned}
+    B[0,3,4,6](x)
+    &= \frac 1 4 x B[0,3,4](x) - \frac 1 3 (x - 6) B[3,4,6](x)\\
+    &=\begin{aligned}[t]
+        &\frac 1 4 x \left(\frac 1 3 x B[0,3](x) - (x - 4) B[3,4](x)\right)\\
+        &- \frac 1 3 (x - 6) \left((x - 3)B[3,4](x) - \frac 1 2 (x - 6) B[4,6](x)\right)
+    \end{aligned}\\
+    &=\begin{aligned}[t]
+        &\frac 1 {12} x^2 B[0,3](x)\\
+        &+ \frac 1 {12} \left(- 3x(x - 4) - 4(x - 6)(x - 3)\right)B[3,4](x)\\
+        &+ \frac 1 6 (x - 6)^2 B[4,6](x)
+    \end{aligned}\\
+    &=\begin{aligned}[t]
+        &\frac 1 {12} x^2 B[0,3](x)\\
+        &+ \frac 1 {12} \left(-7x^2 + 48x - 72\right)B[3,4](x)\\
+        &+ \frac 1 6 (x - 6)^2 B[4,6](x)
+    \end{aligned}
+\end{aligned}
+\end{equation*}
+
+\section*{Problem 2.5}
+
+\begin{enumerate}
+\item 
+    Assume $B_{j,d}$ only depends on $t_j,\ldots, t_{j + d + 1}$,
+    and $B_{j + 1,d}$ only depends on $t_{j + 1},\ldots, t_{j + d + 2}$.
+    Sicne $B_{j,d + 1}$ only depends on $B_{j,d},B_{j + 1, d}, t_j, t_{j + 1}, t_{d + j + 1}$
+    and $t_{d + j + 2}$,
+    by induction it only depends on $t_j,\ldots, t_{j + d + 2}$.
+    The base case is trivially satisfied.
+
+\item
+    The property of (a) follows immediately by induction as $B_{j,d}$
+    is a linear combination of $B_{j,d - 1}$ and $B_{j + 1, d - 1}$.
+    Property (b) follows from (a) and the fact that the sequence $(t_i)$ is increasing.
+
+\item
+    By the relation 
+    $B_{j,d}(x)
+    = \frac {x - t_j}{t_{j + d} - t_j} B_{j,d - 1}(x)
+    + \frac {t_{j + d + 1} - x}{t_{j + d + 1} - t_{j + 1}} B_{j + 1, d - 1}(x)$,
+    our inductive step boils down to prooving that the coefficients
+    $\frac {x - t_j}{t_{j + d} - t_j}$ and
+    $\frac {t_{j + d + 1} - x}{t_{j + d + 1} - t_{j + 1}}$
+    are positive for $x\in(t_j, t_{j + d + 1})$.
+    This follows from the fact that $(t_i)$ is increasing.
+
+\end{enumerate}
+
+\end{document}
