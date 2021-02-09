@@ -1,0 +1,20 @@
+\section{Dual polynomials}
+
+To each B-spline $B_{j,d}(x)$ we associate a polynomial
+
+\begin{equation}
+\rho_{j,d} = (y - t_{j + 1})\ldots (y - t_{j + d + 1}
+\end{equation}
+
+of degree $d$.
+
+Consider a single non-empty knot interval $[t_\mu, t_{\mu + 1})$.
+Then $B_d(x) = (B_{\mu - d, d}(x),\ldots, B_{\mu,d}(x))$,
+and similarly let $\rho_d(y) = (\rho_{\mu - d, d}(y),\ldots, \rho_{\mu, d})$.
+
+\begin{lemma}
+\begin{equation}
+    R_d(x)\rho_d(y) = (y - x)\rho_{d - 1}(y)
+\end{equation}
+\end{lemma}
+
