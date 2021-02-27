@@ -6,7 +6,7 @@ knots = [
 ];
 
 n = 101;
-xList = linspace(-1,0,n);
+xList = linspace(0,1,n);
 degree = 3;
 B = zeros(degree + 1, n)';
 intervalIndex = 1;

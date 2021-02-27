@@ -17,11 +17,11 @@
 
 \section*{Problem 1}
 A B-simple of degree $d$ at a knot of multiplicity $n$ has smoothness $d - n$.
-It is infinitely smooth outside the knots, i.e. on each open knot interval $(t_i,t_{i + 1})$.
-It follows that $B[0,0,0,0,1]$ has smoothness $4 - 4=0$ at $0$ and $3$ at $1$,
-and $B[0,1,1,1,2]$ has smoothness $3$ at $0$, $1$ at $1$, and $3$ at $2$.
-
-\todo{Double check smoothness conditions on splines of low degree}
+It is infinitely smooth outside the knots, i.e. on each open knot interval $(t_i,t_{i + 1})$,
+and outside $[t_1, t_{d + 2}]$.
+It follows that $B[0,0,0,0,1]$ has smoothness $3 - 4=-1$ and is in fact discontinuous at $0$,
+and it has smoothness $3 - 1 = 2$ at $1$.
+The other spline - $B[0,1,1,1,2]$ - has smoothness $3 - 1 = 2$ at $0$, $3 - 3 = 0$ at $1$, and $3 - 1 = 2$ at $2$.
 
 \section*{Problem 2}
 
@@ -79,7 +79,7 @@ It is resolved by the convention $0/0=0$ and the equality follows from the remai
 
 \section*{Problem 4}
 
-\lstinputlisting{src/evaluateSpline.m}
+\lstinputlisting[label=alg:evaluateSpline]{src/evaluateSpline.m}
 \lstinputlisting{src/plotSplines.m}
 
 \begin{figure}
@@ -90,10 +90,25 @@ It is resolved by the convention $0/0=0$ and the equality follows from the remai
 
 \section*{Problem 5}
 
+\lstinputlisting{src/computeSplinePoint.m}
+\lstinputlisting{src/plotSplineCurve.m}
+
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/plotSplineCurve.pdf}
-    \caption{}
+    \caption{The spline curve of alternating coefficients in the interval [0,1]}
+\end{figure}
+
+\section*{Problem 6}
+
+We may in fact compute the cubic spline by stitching together the different splines
+evaluated ta the unit intervals $[i,i + 1]$ for $i=0,1,2,3$ using \hyperref[alg:evaluateSpline]{\texttt{evaluateSpline}}.
+\lstinputlisting{src/plotWholeCubic.m}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/plotWholeCubic.pdf}
+    \caption{The stitched version of the B-splines on the different intervals.}
 \end{figure}
 
 \end{document}
