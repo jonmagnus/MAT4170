@@ -8,4 +8,38 @@
 \begin{document}
 \maketitle
 
+\section*{Problem 1 (3.2)}
+Let $\mathbf t = (0,0,0,1,3,4,5,5)$.
+The existence of the four cubic splines $\{B_{i,3}\}_{i=1}^4$ is due to our regularization not exceeding the degree of our splines.
+There are $8 - (3 + 1) = 4$ of them because we have $8$ knots.
+Their linear independence on $[1,3]$ follow from lemma 3.8.
+
+The splines $\hat B_{1,3}$ and $\hat B_{2,3}$ are naturally identified with $B_{2,3}$ and $B_{3,3}$ respectively,
+so they must also be linearly independent as a subset of a linearly independent set.
+
+\section*{Problem 2 (4.5)}
+Lemma 4.2 states that if $\mathbf \tau$ is a knot vector with at least $d + 2$ knots,
+and it's knots occur as a subsequence of another knot vector $\mathbf t$,
+then $\mathbb S_{d,\mathbf\tau}\subset \mathbb S_{d,\mathbf t}$.
+
+We have already proven the case when $\mathbf \tau$ is $d + 1$-regular, and by extension $\mathbf t$ must also be at least $d + 1$-regular,
+and we will use this in our proof of the general case.
+
+Let $\mathbf \tau^\prime$ and $\mathbf t^\prime$ denote the $d + 1$-regularizations of $\mathbf \tau$ and $\mathbf t$ respectively.
+We have a natural embedding of $\mathbb S_{d, \mathbf \mu}\subset \mathbb S_{d, \mathbf \mu^\prime}$ for $\mathbf \mu=\mathbf \tau, \mathbf t$
+given by padding with zeros at the ends of the coefficient vectors.
+By our restricted variant of the lemma we may take any $f\in\mathbb S_{d, \mathbf \tau}$,
+lift it to $\mathbb S_{d, \mathbf \tau^\prime}$ and extend it to $\mathbb S_{d, \mathbf t^\prime}$.
+It remains to show that we may restrict it again to $\mathbb S_{d, \mathbf t}$.
+
+By the construction of our extensions $\mathbb S_{d,\mathbf\mu^\prime}\supset \mathbb S_{d, \mathbf \mu}$,
+$f$ would not obtain any nonzero coefficients on our regularization,
+and as no knot is inserted between the knots added in the regularization in the embedding $\mathbb S_{d,\mathbf \tau^\prime}\subset \mathbb S_{d,\mathbf t^\prime}$,
+we would not obtain in any nonzero coefficients outside the span of our original coefficients.
+It follows that the projection of $f$ from $\mathbb S_{d,\mathbf t^\prime}\to \mathbb S_{d,\mathbf t}$ does not alter $f$.
+
+\section*{Problem 3 (4.6)}
+
+
+
 \end{document}

@@ -1,3 +1,3 @@
 
 all: 
-	latexmk assignment2.tex
+	latexmk assignment3.tex
