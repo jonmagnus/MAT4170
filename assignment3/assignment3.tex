@@ -40,6 +40,28 @@ It follows that the projection of $f$ from $\mathbb S_{d,\mathbf t^\prime}\to \m
 
 \section*{Problem 3 (4.6)}
 
+As in the previous exercise, the trick is to use the regularized version of the theorem to prove the general version
+through truncating the coefficient matrices.
+Let $f\in \mathbb S_{d,\mathbf \tau}$ be defined by $f=\sum_j c_j B_{j,d,\tau}$.
+We may express it in the $d + 1$-regularized spline-basis as $f=\sum_{j=d + 1}^{d + \# \mathbf \tau} c_{j - d} \hat B_{j,d,\tau^\prime}$.
+For prettier indexing, we let $\hat c_j=c_{j - d}$ for $j=d + 1,\ldots, d + \# \mathbf \tau$ and $0$ otherwise.
+Then $f=\sum_j \hat c_j \hat B_{d,j,\tau^\prime}$.
 
+Using the regularized version of the theorem, we see that the coefficients $b_i=0$ for $i\leq d + 1$,
+because they are a linear combination of $c_j=0$ for $j\leq d + 1$ by $\mu=d + 1$.
+The same applies to the trailing coefficients, for which we would have $\mu = \# \tau^\prime$.
+It follows that the projection from $\mathbb S_{d,\mathbf t^\prime}\to \mathbb S_{d,\mathbf t}$ preserves $f$.
+
+
+\section*{Problem 4 (4.7)}
+Let $1 = \sum B_{d,j,\tau}c_j$ with $c_j=1$ for all $j$.
+Then $1 = \sum B_{d,i,\mathbf t} b_i$ with $b_i=\sum \alpha_{j,d}(i) c_j$,
+however $\sum B_{d,i,\mathbf t}=1$, and the $B_{d,i,\mathbf t}$ are linearly independent,
+so $b_i = 1$.
+So $1=b_i = \sum\alpha_{j,d}(i)c_j=\sum\alpha_{j,d}(i)$.
+
+\section*{Problem 5 (4.8)}
+
+\section*{Problem 6 (4.10)}
 
 \end{document}
