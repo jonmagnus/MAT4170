@@ -5,6 +5,14 @@
 \author{Jon-Magnus Rosenblad}
 \date{}
 
+\lstset{
+    language=Octave,
+    frame=single,
+    breaklines=true,
+    title=\lstname,
+}
+
+
 \begin{document}
 \maketitle
 
@@ -61,7 +69,41 @@ so $b_i = 1$.
 So $1=b_i = \sum\alpha_{j,d}(i)c_j=\sum\alpha_{j,d}(i)$.
 
 \section*{Problem 5 (4.8)}
+\lstinputlisting{src/test-oslo.m}
+\lstinputlisting{src/oslo.m}
+\lstinputlisting{src/computeR.m}
+\lstinputlisting{output/oslo.txt}
 
 \section*{Problem 6 (4.10)}
+The blossoms of constant polynomials must be the polynomial itself,
+so $\mathcal B[0](x_1,x_2,x_3) = 0$ and $\mathcal B[1](x_1,x_2,x_3) = 1$.
+
+For monomials, the blossom is the sum of the symmetric homogeneous polynomials of the same degree,
+so
+\begin{align*}
+    \mathcal B[x](x_1,x_2,x_3) 
+    &= \frac{x_1 + x_2 + x_3} 3\\
+    \mathcal B[x^2](x_1,x_2,x_3) 
+    &= \frac{x_2x_3 + x_1x_3 + x_1x_2} 3\\
+    \mathcal B[x](x_1,x_2,x_3) 
+    &= x_1x_2x_3.
+\end{align*}
+
+The blossom is linear in it's polynomial,
+so
+\begin{equation*}\begin{aligned}
+    \mathcal B[2x + x^2 - 4x^3](x_1,x_2,x_3) 
+    &=2\mathcal B[x](x_1,x_2,x_3) + \mathcal B[x^2](x_1,x_2,x_3) - 4\mathcal B[x^3](x_1,x_2,x_3)\\
+    &= 2(x_1 + x_2 + x_3) + (x_2x_3 + x_1x_3 + x_1x_2) - 4x_1x_2x_3.
+\end{aligned}
+\end{equation*}
+
+By the linearity of the blossom, it must also be invariant under a linear change of base
+\begin{equation*}\begin{aligned}
+    \mathcal B[(x - a)^2](x_1,x_2,x_3)
+    &= \mathcal B[x^2](x_1 - a,x_2 - a, x_3 - a)\\
+    &= \frac{(x_2 - a)(x_3 - a) + (x_1 - a)(x_3 - a) + (x_1 - a)(x_2 - a)} 3
+\end{aligned}
+\end{equation*}
 
 \end{document}
