@@ -13,7 +13,6 @@ for i=1:9
     evalPoints = linspace(chordLengths(1), chordLengths(n), 200)';
     evalMat = computeEvaluationMatrix(evalPoints, knots, degree);
     splinePoints = evalMat*coeff;
-    %splinePoints = A*coeff;
     plot3(splinePoints(:,1), splinePoints(:,2), splinePoints(:,3), "DisplayName", filename);
     hold on;
 end
@@ -22,4 +21,4 @@ set(gcf, "PaperSize", [6,4]);
 xlabel("x");
 ylabel("y");
 zlabel("z");
-print -dpdf "figures/hf1.pdf";
+print -dpdf "figures/problem1.pdf";

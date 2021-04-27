@@ -8,7 +8,7 @@ function evaluationMatrix = computeEvaluationMatrix(points, knots, d)
         intervalIndex = findKnotInterval(t, intervalIndex, knots);
         shift = d + 1 - intervalIndex;
         periodicKnots = rotateAddKnots(shift, knots);
-        B = evaluatePeriodicSpline(t, periodicKnots, d);
+        B = evaluateSpline(t, periodicKnots, d);
         evaluationMatrix(i,:) = circshift([B; zeros(m - d - 1,1)], -shift)';
     end
 endfunction 

@@ -1,4 +1,4 @@
-function B = evaluatePeriodicSpline(point, knots, d)
+function B = evaluateSpline(point, knots, d)
     B = zeros(d + 1, 1);
     B(d + 1) = 1;
     for i = 1:d

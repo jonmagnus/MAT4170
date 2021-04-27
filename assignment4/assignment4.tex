@@ -1,0 +1,46 @@
+\documentclass[english]{article}
+\usepackage{assignment}
+\graphicspath{{figures/}}
+
+\title{MAT170 -- Assignment 4}
+\author{Jon-Magnus Rosenblad}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1}
+
+We use periodic splines to get a smooth curve in each layers.
+To do this, we need to augment the knots in order for the knots to be rotationally invariant.
+\lstinputlisting{src/computeEvaluationMatrix.m}
+\lstinputlisting{src/rotateAddKnots.m}
+\lstinputlisting{src/evaluateSpline.m}
+
+We parametrize our splines by chord length.
+\lstinputlisting{src/findChordLengths.m}
+\lstinputlisting{problem1.m}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{problem1.pdf}
+    \caption{Cubic spline interpolation on each layer of the tomography using periodic splines.}
+\end{figure}
+
+\section*{Problem 2}
+
+We regulate the knot vectors, but do not add any extra requirements to make them smooth.
+\lstinputlisting{src/computeRegulatedEvaluationMatrix.m}
+\lstinputlisting{src/regulateKnots.m}
+
+We retrieve interpolated points approximate with our spline surface.
+\lstinputlisting{src/obtainGriddedPoints.m}
+\lstinputlisting{problem2.m}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{problem2.pdf}
+    \caption{Cubic tensor spline interpolation on the stitching of the tomographic layers.}
+\end{figure}
+
+\end{document}
